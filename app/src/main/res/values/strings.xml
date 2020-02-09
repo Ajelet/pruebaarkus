@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Prueba Arkus</string>
+    <string name="action_settings">Settings</string>
+    <string name="petFriendly">Pet friendly</string>
+    <string name="notPetFriendly">No pets allowed</string>
+
+</resources>
