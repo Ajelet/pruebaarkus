@@ -3,5 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="petFriendly">Pet friendly</string>
     <string name="notPetFriendly">No pets allowed</string>
-
+    <string name="title_activity_place">Detail</string>
+    <string name="web">Visit Web Site</string>
+    <string name="call">Call</string>
+    <string name="directions">Directions</string>
 </resources>

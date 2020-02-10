@@ -12,8 +12,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAagrzDrZWCwrINaGJLIAuJ8eigJRkB8j8" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".activities.PlaceActivity"
+            android:label="@string/title_activity_place"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"

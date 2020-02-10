@@ -3,6 +3,7 @@ package io.quickcoding.pruebaarkus.holders;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class ViewHolderPlace extends RecyclerView.ViewHolder {
     public ImageView iconPet;
     public TextView isPetFriendly;
     public TextView addressPlace;
+    public LinearLayout container;
 
 
 
@@ -31,6 +33,7 @@ public class ViewHolderPlace extends RecyclerView.ViewHolder {
         iconPet = itemView.findViewById(R.id.iconPet);
         isPetFriendly = itemView.findViewById(R.id.isPetFriendly);
         addressPlace = itemView.findViewById(R.id.addressPlace);
+        container = itemView.findViewById(R.id.container);
 
 
 

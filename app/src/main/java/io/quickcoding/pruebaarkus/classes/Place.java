@@ -1,8 +1,12 @@
 package io.quickcoding.pruebaarkus.classes;
 
+import android.location.Location;
+
 import org.json.JSONObject;
 
-public class Place {
+import java.util.Locale;
+
+public class Place  implements Comparable<Place>{
 
 
    private String placeId = "";
@@ -19,10 +23,24 @@ public class Place {
    private String addressLine2 = "";
    private String phoneNumber = "";
    private String site = "";
+   private float distance = 0.0f;
+   private String distanceString = "";
 
 
-   public Place()
-   {}
+   @Override
+   public int compareTo(Place place) {
+
+      if (distance > place.distance) {
+         return 1;
+      }
+      else if (distance < place.distance) {
+         return -1;
+      }
+      else {
+         return 0;
+      }
+
+   }
 
    public Place(JSONObject item)
    {
@@ -155,6 +173,25 @@ public class Place {
       this.site = site;
    }
 
+   public float getDistance() {
+      return distance;
+   }
+
+   public String getDistanceString() {
+      return distanceString;
+   }
+
+   public void setDistanceTo(Location locationB) {
+
+      Location locationA = new Location("Location A");
+      locationA.setLatitude(latitude);
+      locationA.setLongitude(longitude);
+
+      this.distance = locationA.distanceTo(locationB)/1000;
+
+      this.distanceString = String.format(Locale.getDefault(),"%.0f", this.distance)+"Km";
+
+   }
 
    @Override
    public String toString()
@@ -176,3 +213,4 @@ public class Place {
 
    }
 }
+
