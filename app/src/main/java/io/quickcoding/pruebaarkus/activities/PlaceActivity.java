@@ -47,14 +47,6 @@ public class PlaceActivity extends AppCompatActivity implements View.OnClickList
     private TextView numberPhonePlace;
     private TextView webSitePlace;
 
-    private RelativeLayout containerWebPlace;
-    private RelativeLayout containerCallPlace;
-    private RelativeLayout containerDirectionsPlace;
-
-    static Integer ACTION_WEB = 1;
-    static Integer ACTION_CALL = 2;
-    static Integer ACTION_NAVIGATION = 3;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,18 +79,13 @@ public class PlaceActivity extends AppCompatActivity implements View.OnClickList
         numberPhonePlace = findViewById(R.id.numberPhonePlace);
         webSitePlace = findViewById(R.id.webSitePlace);
 
-        containerCallPlace = findViewById(R.id.containerCallPlace);
-        containerDirectionsPlace = findViewById(R.id.containerDirectionsPlace);
-        containerWebPlace = findViewById(R.id.containerWebPlace);
+        RelativeLayout containerCallPlace = findViewById(R.id.containerCallPlace);
+        RelativeLayout containerDirectionsPlace = findViewById(R.id.containerDirectionsPlace);
+        RelativeLayout containerWebPlace = findViewById(R.id.containerWebPlace);
 
         containerWebPlace.setOnClickListener(this);
-        containerWebPlace.setTag(ACTION_WEB);
-
         containerDirectionsPlace.setOnClickListener(this);
-        containerDirectionsPlace.setTag(ACTION_NAVIGATION);
-
         containerCallPlace.setOnClickListener(this);
-        containerCallPlace.setTag(ACTION_CALL);
     }
 
 
@@ -194,7 +181,7 @@ public class PlaceActivity extends AppCompatActivity implements View.OnClickList
 
     public void navigation(double latitud, double longitud, String place)
     {
-        String uri ="geo:0,0?q=" + android.net.Uri.encode(String.format(Locale.ENGLISH,"%s@%f,%f", "Go", latitud, longitud), "UTF-8");
+        String uri ="geo:0,0?q=" + android.net.Uri.encode(String.format(Locale.ENGLISH,"%s@%f,%f", place, latitud, longitud), "UTF-8");
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         try
@@ -218,8 +205,25 @@ public class PlaceActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-
-
-        switch ()
+        Intent intent;
+        switch(view.getId()) {
+            case R.id.containerCallPlace:
+                String u ="tel:"+ place.getPhoneNumber().replaceAll("[^0-9]", "");
+                intent = new Intent(Intent.ACTION_DIAL, Uri.parse(u));
+                startActivity(intent);
+                break;
+            case R.id.containerDirectionsPlace:
+                navigation(place.getLatitude(),place.getLongitude(),place.getPlaceName());
+                break;
+            case R.id.containerWebPlace:
+                intent = new Intent(PlaceActivity.this,WebActivity.class);
+                Gson gS = new Gson();
+                String gsonPlace= gS.toJson(place);
+                intent.putExtra("place",gsonPlace);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 }

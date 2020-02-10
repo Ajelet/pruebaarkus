@@ -7,4 +7,5 @@
     <string name="web">Visit Web Site</string>
     <string name="call">Call</string>
     <string name="directions">Directions</string>
+    <string name="title_activity_web">Site</string>
 </resources>
